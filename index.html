@@ -1,0 +1,528 @@
+var MDK = (function(win, doc, $) {
+/*!
+* 使用 MDK作为命名空间
+* 此版本结合jQuery使用
+*/
+var mdk = {
+name: 'mdk', // 作为id前缀
+version: '2.0.1', // 版本号
+id: 1, // id 开始
+zIndex: 10000, // z-index 开始
+util: { // 工具类挂载空间
+lang: (function() {
+return {
+/**
+* 判断是否是undefined
+* @param {必须}{Mix} val
+* @return {Boolean}
+*/
+isUndefined: function(val) {
+return typeof val == 'undefined';
+},
+isArray: $.isArray,
+isFunction: $.isFunction,
+isObject: $.isPlainObject,
+/**
+* 提供function的继承(利用prototype)
+* @param {必须}{Function} subClass 子类
+* @param {必须}{Function} superClass 父类
+* @return {undefined} 无返回值
+*/
+extend: function(subClass, superClass) {
+// 下面三行是避免superClass的constructor中逻辑比较多,new的时候消耗资源
+var F = function() {
+};
+F.prototype = superClass.prototype;
+subClass.prototype = new F();
+subClass.prototype.constructor = subClass;// new导致subClass.prototype.constructor指向了F,这里修复
+},
+/**
+* 将源对象中存在目标对象中不存在的属性复制到目标对象
+* @param {必须}{Object} destObject 目标对象
+* @param {必须}{Object} srcObject 源对象
+* @return {Object} 修改后的目标对象
+*/
+expand: function(destObject, srcObject) {
+destObject = destObject || {};
+for (var i in srcObject) {
+if (mdk.util.lang.isUndefined(destObject[i])) {
+destObject[i] = srcObject[i];
+}
+}
+return destObject;
+},
+/**
+* 加强版的apply，并且不会立即执行
+* @param {必须}{Function} srcFn 源function
+* @param {可选}{Array} args 源function接受的参数
+* @param {可选}{Object} scope 指定srcFn中的this
+* @param {可选}{Boolean/Number} appendArgs 扩展的参数
+* @return {Function} 返回委托function
+*/
+delegate: function(srcFn, args, scope, appendArgs) {
+return function() {
+var callArgs = args || arguments;
+if (appendArgs === true) { // 将传入的参数绑在前面，否则放在后面
+callArgs = Array.prototype.slice.call(arguments, 0);
+callArgs = callArgs.concat(args);
+} else if (typeof appendArgs == 'number') {
+callArgs = Array.prototype.slice.call(arguments, 0);
+var applyArgs = [appendArgs, 0].concat(args);
+Array.prototype.splice.apply(callArgs, applyArgs); // 从第appendArgs个位置插入args
+}
+return srcFn.apply(scope || win, callArgs);
+};
+},
+/**
+* 延迟执行function
+* @param {必须}{Function} srcFn 要执行的function
+* @param {必须}{int} millens 延迟的毫秒数
+* @param {可选}{Array} args srcFn的参数
+* @param {可选}{Object} scope 指定srcFn的this,默认window
+* @return {} 无返回值
+*/
+defer: function(srcFn, millens, args, scope) {
+var fn = this.delegate(srcFn, args, scope);
+win.setTimeout(fn, millens);
+},
+/**
+* 创建callback
+* @param {必须}{Function} fn 执行的function
+* @param {可选}{Function/Array} params 可以是function，但该function（不能是异步）需要返回array
+* @param {可选}{Object} scope function的作用域
+*/
+callback: function(fn, scope, params) {
+if (fn) {
+var p;
+if (mdk.util.lang.isUndefined(params)) {
+p = [];
+} else if (mdk.util.lang.isFunction(params)) {
+p = params();
+} else if (mdk.util.lang.isArray(params)) {
+p = params;
+} else {
+p = Array.prototype.slice.call(params, 0);
+}
+return fn.apply(scope, p);
+}
+return true;
+},
+/**
+* 抛出错误，余下脚本将不再运行
+* @param {必须}{String} msg 错误消息
+*/
+error: function(msg) {
+throw new Error(msg);
+},
+ifElse: function(rule, x, y) {
+return rule ? x : y ? y : '';
+},
+timer: function(params) {
+var timer;
+var o = {
+timer: timer
+};
+var fn = function() {
+if (params.rule.call(params.scope)) {
+params.callback && params.callback.call(params.scope);
+if (params.autoClear !== false) {
+clearTimeout(timer);
+}
+timer = setTimeout(function() {
+fn();
+}, (mdk.util.lang.isFunction(params.step) ? params.step() : params.step) || 256);
+} else {
+clearTimeout(timer);
+}
+}
+fn();
+return 0;
+}
+};
+})(),
+string: (function() {
+return {
+/**
+* 将对象转化成url格式的字符串(序列化)
+* @param {必须}{Object} obj 待序列化的对象
+* @return {String} 序列化的字符串
+*/
+serialize: function(obj) {
+var t = [];
+for (var i in obj) {
+t.push(i);
+t.push('=');
+t.push(obj[i]);
+t.push('&');
+}
+t.pop();
+return t.join('');
+},
+str2JSON: $.parseJSON
+};
+})(),
+array: (function() {
+return {
+indexOf: $.inArray,
+/**
+* 给数组的每个元素执行一个function
+* @param {必须}{Array} arr 被操作的数组
+* @param {必须}{Function} fn 执行的function,带三个参数
+*          第一个 value: 当前数组元素的值
+*          第二个 index: 当前数组元素的下标
+*          第三个 array: 当前数组
+* @param {可选}{Object} scope 指定的作用域
+* @return {undefined}
+*/
+each: function(arr, fn, scope) {
+for (var i = 0, len = arr.length; i < len; i++) {
+fn.call(scope || win, arr[i], i, arr);
+}
+}
+};
+})(),
+dom: (function() {
+return {
+box: function(params) {
+params = params || {};
+var box = document.createElement(params.tag || 'div');
+box.className = params.className || '';
+if(params.id) {
+box.setAttribute('id', params.id);
+}
+if (params.style) {
+box.setAttribute('style', params.style);
+box.style.cssText = params.style;
+}
+if (params.attr) {
+for (var i = 0, len = params.attr.length; i < len; i++) {
+box.setAttribute(params.attr[i].key, params.attr[i].value);
+}
+}
+var result = mdk.util.lang.isFunction(params.html) ? params.html.call(params.scope) : (params.html || '');
+if (typeof result == 'string') { // 字符串
+box.innerHTML = result;
+} else { // 当作dom节点
+if (params.override) {
+box.innerHTML = '';
+}
+if (mdk.util.lang.isArray(result)) {
+for (var i = 0, len = result.length; i < len; i++) {
+box.appendChild(result[i]);
+}
+} else {
+box.appendChild(result);
+}
+}
+params.event && params.event.call(box);
+return box;
+},
+center: function(node, renderTo) {
+var w = node.width(), h = node.height();
+if (renderTo == document.body) {
+renderTo = $(win);
+}
+node.css({
+top: (renderTo.height() - h) / 2 + renderTo.scrollTop(),
+left: (renderTo.width() - w) / 2 + renderTo.scrollLeft()
+});
+return node;
+}
+};
+})(),
+bom: (function() {
+return {
+/**
+* 浏览器检测
+* MDK.util('bom').ie 表示IE，以此类推
+*/
+browser: (function() {
+var ie = !!win.ActiveXObject;
+var webkit = !!win.devicePixelRatio;
+return {
+ie: ie,
+ie6: ie && !win.XMLHttpRequest, // IE6没有Window.XMLHttpRequest，其后版本都有
+ie7: ie && $.browser.version == '7.0',
+firefox: !!doc.getBoxObjectFor || 'mozInnerScreenX' in win,
+opera: webkit && !!win.opera,
+safari: /a/.__proto__ == '//',
+chrome: webkit && !!win.chrome
+};
+})()
+}
+})()
+},
+cmp: {}, // 组件挂载空间
+global: {}// 全局变量挂载空间
+};
+var helper = {
+namespace: function(root, name, val) {
+var arr = name.split('.');
+var n = arr.length - 1;
+for (var i = 0; i < n; i++) {
+if (mdk.util.lang.isUndefined(root[arr[i]])) { // 为空，赋值空object
+root[arr[i]] = {};
+}
+if (mdk.util.lang.isObject(root[arr[i]])) { // 对于原先存在且非object类型数据进行根传递
+root = root[arr[i]];
+} else {
+mdk.util.lang.error('尝试给非object类型数据(' + root + ':' + arr[i] + ')添加属性');
+}
+}
+if (mdk.util.lang.isUndefined(root[arr[n]])) {
+root[arr[n]] = val;
+} else {
+if (!mdk.util.lang.isUndefined(val)) {
+if (mdk.util.lang.isObject(val)) {
+for (var i in val) {
+if (mdk.util.lang.isUndefined(root[arr[n]][i])) {
+root[arr[n]][i] = val[i];
+}
+}
+} else {
+mdk.util.lang.error('命名空间已经定义，无法写入');
+}
+}
+}
+return root[arr[n]];
+}
+};
+
+/**
+* 给IE浏览器添加总样式
+*/
+$(function() {
+var body = $('body');
+if (MDK.util('bom').browser.ie) {
+body.addClass('ie');
+if (MDK.util('bom').browser.ie6) {
+body.addClass('ie6');
+} else if (MDK.util('bom').browser.ie7) {
+body.addClass('ie7');
+}
+}
+});
+
+return {
+/**
+* 获取closure中的基础类型的变量
+* @param {String} key
+*/
+get: function(key) {
+var r = mdk[key];
+if (typeof r == 'number' || typeof r == 'string') {
+if (key == 'zIndex' || key == 'id') {
+mdk[key] = r + 1;
+}
+return r;
+}
+},
+/**
+* 获取组件/声明组件,config说明如下：
+* config.singleton: true表示单例模式
+*
+*/
+cmp: function(name, config) {
+if (mdk.util.lang.isUndefined(config)) {
+return helper.namespace(mdk.cmp, name);
+} else {
+var Class = function(params) {
+if (config.singleton === true) { // 单例模式
+if (Class.singleton === 'singleton') { // 判断是否已经实例化
+return Class.ins;
+}
+}
+this.id = MDK.id(); // 给组件生成唯一的id
+if (config.extend) { // 继承构造器
+var superClass = MDK.cmp(config.extend);
+if (superClass) {
+superClass.call(this, config);
+this.parent = superClass.prototype;
+}
+}
+for (var i in config) { // 复制属性
+if (!mdk.util.lang.isFunction(config[i])) { // 如果是function，则绑定到原型上
+this[i] = config[i];
+}
+}
+for (var i in params) { // 复制自定义参数到属性
+this[i] = params[i];
+}
+this.renderTo = this.renderTo || document.body;
+if (config.singleton === true) { // 标识单例已经实例化
+Class.singleton = 'singleton';
+Class.ins = this;
+}
+};
+if (config.extend) { // 继承方法
+var superClass = MDK.cmp(config.extend);
+if (superClass) {
+mdk.util.lang.extend(Class, superClass);
+}
+}
+for (var i in config) { // 复制方法到prototype
+if (mdk.util.lang.isFunction(config[i])) { // 如果是function，则绑定到原型上
+Class.prototype[i] = config[i];
+}
+}
+Class.prototype.init = function() {
+if (!this.inited && mdk.util.lang.callback(this.beforeInit, this) !== false) {
+this.inited = true;
+this.events = {};
+this.eventId = 0;
+if (mdk.util.lang.isUndefined(config.init) || (mdk.util.lang.isFunction(config.init) && mdk.util.lang.callback(config.init, this, arguments) !== false)) {
+if (mdk.util.lang.isFunction(this.html)) { // html生成
+var appendFn = 'append';
+var node = this.html();
+node.id = this.id;
+node.style.display = 'none';
+this.mainNode = node;
+if (this.renderPosition == 'pre') {
+appendFn = 'prepend';
+}
+$(this.renderTo)[appendFn](node);
+}
+if (mdk.util.lang.isFunction(this.style)) { // 样式渲染
+this.style();
+}
+if (mdk.util.lang.isFunction(this.event)) { // 事件绑定
+this.event();
+}
+}
+mdk.util.lang.callback(this.afterInit, this);
+this.autoRender && this.render();
+}
+return this;
+};
+Class.prototype.actionNode = function(name) {
+return $(this.mainNode).find('[data-action="' + name + '"]');
+};
+/**
+* 用来注册外部组件
+*/
+Class.prototype.reg = function(params) {
+this.cmp = {};
+for (var i in params) {
+this.cmp[i] = params[i];
+}
+return this;
+};
+Class.prototype.bind = function(params) {
+var _this = this;
+params = params || {};
+if (params.node[0]) {
+params.name = params.name || (MDK.get('name') + (++this.eventId));
+params.type = params.type || 'click';
+params._handler = function(e) {
+return params.handler.call(_this, e, this);
+};
+this.events[params.name] = params;
+if (params.immediately === true) {
+params.node.bind(params.type, params._handler);
+}
+}
+return this;
+};
+Class.prototype.unbind = function(name, force) {
+var event = this.events[name];
+event.node.unbind(event.type, event._handler);
+if (force) {
+delete this.events[name];
+}
+return this;
+};
+Class.prototype.render = function() {
+if (!this.rendered && mdk.util.lang.callback(this.beforeRender, this) !== false) {
+this.rendered = true;
+if (mdk.util.lang.isUndefined(config.render) || (mdk.util.lang.isFunction(config.render) && mdk.util.lang.callback(config.render, this, arguments) !== false)) {
+if (this.mainNode && this.mainNode.style) {
+$(this.mainNode).show();
+}
+}
+for (var i in this.events) { // render 是否绑定事件
+var event = this.events[i];
+if (event.immediately !== true) {
+event.node.bind(event.type, event._handler);
+}
+}
+mdk.util.lang.callback(this.afterRender, this);
+}
+return this;
+};
+Class.prototype.unrender = function() {
+if (this.rendered && mdk.util.lang.callback(this.beforeUnrender, this) !== false) {
+this.rendered = false;
+if (mdk.util.lang.isUndefined(config.unrender) || (mdk.util.lang.isFunction(config.unrender) && mdk.util.lang.callback(config.unrender, this, arguments) !== false)) {
+if (this.mainNode && this.mainNode.style) {
+$(this.mainNode).hide();
+}
+}
+for (var i in this.events) { // 释放绑定事件内存
+this.unbind(i);
+}
+mdk.util.lang.callback(this.afterUnrender, this);
+this.autoDestory && this.destory();
+}
+return this;
+};
+Class.prototype.destory = function() {
+if (mdk.util.lang.callback(this.beforeDestory, this) !== false) {
+this.rendered = false;
+if (mdk.util.lang.isUndefined(config.destory) || (mdk.util.lang.isFunction(config.destory) && mdk.util.lang.callback(config.destory, this, arguments) !== false)) {
+this.mainNode && $(this.mainNode).remove();
+}
+mdk.util.lang.callback(this.afterDestory, this);
+for (var i in this.events) { // 释放绑定事件内存
+delete this.events[i];
+}
+for (var i in this) { // 释放属性内存
+this[i] = null;
+}
+}
+return this;
+};
+return helper.namespace(mdk.cmp, name, Class);
+}
+},
+util: function(name, value) {
+if (mdk.util.lang.isUndefined(value)) {
+return helper.namespace(mdk.util, name);
+} else {
+return helper.namespace(mdk.util, name, value);
+}
+},
+global: function(key, value) {
+if (value) {
+mdk.global[key] = value;
+}
+return mdk.global[key];
+},
+/**
+* 生成一个全站唯一的ID
+*/
+id: function() {
+return MDK.get('name') + MDK.get('id');
+},
+/**
+*
+* @param {Object} params
+*/
+require: function(params, callback) {
+var mdk = {};
+$(function() { // dom ready 时候加载防止出错
+if (params.util) { // 加载util
+for (var i in params.util) {
+mdk[i] = MDK.util(params.util[i]);
+}
+}
+if (params.cmp) { // 加载cmp
+for (var i in params.cmp) {
+mdk[i] = MDK.cmp(params.cmp[i]);
+}
+}
+callback && callback(mdk);
+});
+return mdk;
+}
+};
+})(window, document, jQuery);

@@ -1,0 +1,79 @@
+(function(MDK,$) {
+
+var config = {
+basicInfo: "setting/info/basic",
+cpnyInfo: "setting/info/company",
+ctacInfo: "setting/info/contact"
+
+};
+
+var helper = {};
+
+var mdk = MDK.require({
+cmp: {
+calendar: 'calendar'
+}
+});
+
+$(function() {
+
+$('#basic-info-form').submit(function() {
+$.post(baseurl + config.basicInfo,$('#basic-info-form').serialize(),function(data) {
+if (data.err) {
+$('.postTip')[0].innerHTML = data.msg + ' å¤±è´¥åŽŸå› ï¼š' + data.err;
+$('.postTip').removeClass('success').addClass('error');
+$('.postTip').show();
+} else {
+$('.postTip').removeClass('error').addClass('success');
+$('.postTip')[0].innerHTML = data.msg ;
+$('.postTip').show();
+setTimeout(function() {$('.postTip').hide();},3000);
+}
+}
+);
+return false;
+});
+
+$('.mo-card-ext-info-item .title').click(function() {
+$(this).siblings().toggle();
+return false;
+});
+
+$('.c-icon-add-item').live("click",function() {
+var appTo = $(this).parent().parent().parent();
+var newNode = appTo.clone();
+appTo.after(newNode);
+newNode.find('input').val('');
+if(newNode.find('input').attr('name') == 'tels[]' && newNode.find('select').attr('name') == 'tels_type[]'){
+newNode.find('input').attr('disabled', false);
+newNode.find('select').attr('disabled', false);
+}
+return false;
+});
+
+$('.c-icon-del-item').live("click",function() {
+var appTo = $(this).parent().parent().parent();
+appTo.remove();
+return false;
+});
+
+$('#country').bind("change",function() {
+if( $(this).val() != "ä¸­å›½" ){
+$(this).siblings(".second-select").hide();
+$(this).siblings(".input-select").show();
+} else {
+$(this).siblings(".input-select").hide();
+$(this).siblings(".second-select").show();
+}
+});
+
+new Place({province:$('#province'),provinceVal:$('#province').val(),city:$('#city'),cityVal:$('#city').val()});
+var c = new mdk.calendar({
+bindTo: $('#calendar'),
+padding:3
+});
+c.init();
+$('.homepage').addClass('card-setting');
+});
+
+})(MDK,jQuery);

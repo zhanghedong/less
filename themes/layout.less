@@ -1,0 +1,47 @@
+// Specify the number of columns and set column and gutter widths
+@columns: 12;
+@column-width: 60;
+@gutter-width: 20;
+@layout-space:20px;
+
+// Uncomment the definition below for a percentage-based layout
+// @total-width: 100%;
+
+
+////////////
+// LAYOUT //
+////////////
+
+// center the contents
+.wrapper {
+	width: 960px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+// header
+#header {
+	.column(12);
+    height: 78px;
+	margin-bottom: @layout-space;
+}
+//featured
+#featured{
+    height:375px;
+}
+#featured .slideshow {
+    .column(6);
+	margin-bottom: @layout-space;
+}
+#featured .intro {
+    .column(6);
+	margin-bottom: @layout-space;
+}
+// main
+#main{
+   .column(12);
+}
+#main .guide {
+    padding: 30px;
+    margin-bottom: @layout-space
+}
