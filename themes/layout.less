@@ -12,21 +12,23 @@
 // LAYOUT //
 ////////////
 
-// center the contents
-.wrapper {
-	width: 960px;
-	margin: 0 auto;
-	overflow: hidden;
-}
-
 // header
 #header {
-	.column(12);
+    margin: 0 auto;
+    width: 960px;
     height: 78px;
 	margin-bottom: @layout-space;
 }
+#header h1{
+  .column(3);
+}
+#header .top-nav{
+  .column(9);
+}
 //featured
 #featured{
+    width:960px;
+    margin: 0 auto;
     height:375px;
 }
 #featured .slideshow {
@@ -38,10 +40,35 @@
 	margin-bottom: @layout-space;
 }
 // main
+#main-wrapper{
+    width: 960px;
+    margin: 0 auto @layout-space;
+}
 #main{
-   .column(12);
+    .column(12);
 }
 #main .guide {
     padding: 30px;
     margin-bottom: @layout-space
+}
+#footer-wrapper{
+clear: both;
+}
+#footer{
+   width:960px;
+   margin:0 auto;
+}
+#footer .footer-nav{
+  .column(7);
+  margin-bottom:@layout-space
+}
+#footer .footer-search{
+  .column(5);
+  margin-bottom:@layout-space
+}
+#footer .follow-us{
+  .column(6);
+}
+#footer .copyright{
+  .column(6);
 }

@@ -21,13 +21,22 @@
     <favorites_list name="lesscss" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.1">
+    <splitter split-orientation="vertical" split-proportion="0.6483763">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/index.html">
+          <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/style.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="528" column="0" selection-start="12254" selection-end="12254" vertical-scroll-proportion="387.2">
+                <state line="27" column="18" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="layout.less" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/themes/layout.less">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="44" column="32" selection-start="731" selection-end="731" vertical-scroll-proportion="0.6837294">
                   <folding />
                 </state>
               </provider>
@@ -37,37 +46,28 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="528" column="0" selection-start="12254" selection-end="12254" vertical-scroll-proportion="-374.7097">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="style.less" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/themes/style.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="29" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
+                <state line="22" column="22" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="less-converter.less" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tocss/less-converter.less">
+          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="64" column="18" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0">
+                <state line="52" column="13" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.08627451">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/tocss/index.html">
+          <file leaf-file-name="blackboard.xml" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/.WebIde10/config/colors/blackboard.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="82" column="40" selection-start="2903" selection-end="2903" vertical-scroll-proportion="0.14148352">
+                <state line="3" column="42" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -76,7 +76,7 @@
           <file leaf-file-name="grid.less" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/themes/global/grid.less">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="36" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
+                <state line="29" column="18" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -96,20 +96,13 @@
     <option name="UPDATE_CHANGES_POLICY" value="STASH" />
     <option name="LINE_SEPARATORS_CONVERSION" value="ASK" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/tocss/index.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/layout.less" />
         <option value="$PROJECT_DIR$/style.less" />
         <option value="$PROJECT_DIR$/themes/global/reset.css" />
-        <option value="$PROJECT_DIR$/themes/layout.less" />
         <option value="$USER_HOME$/.WebIde10/config/colors/grey_orange.xml" />
-        <option value="$USER_HOME$/.WebIde10/config/colors/blackboard.xml" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/themes/style.less" />
         <option value="$PROJECT_DIR$/tocss/less-converter.js" />
         <option value="$PROJECT_DIR$/tocss/less-converter.less" />
         <option value="$PROJECT_DIR$/a.html" />
@@ -117,6 +110,11 @@
         <option value="$PROJECT_DIR$/te2.js" />
         <option value="$PROJECT_DIR$/tocss/index.php" />
         <option value="$PROJECT_DIR$/tocss/index.html" />
+        <option value="$PROJECT_DIR$/converter/index.html" />
+        <option value="$USER_HOME$/.WebIde10/config/colors/blackboard.xml" />
+        <option value="$PROJECT_DIR$/themes/style.less" />
+        <option value="$PROJECT_DIR$/themes/layout.less" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -186,67 +184,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tocss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="global" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lesscss" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="less" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -256,13 +194,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.main.proportions" value="0.30000004" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.sourceCode.HTML" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -299,6 +237,9 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -326,17 +267,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922733" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15073529" sideWeight="0.96189374" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16850491" sideWeight="0.65061593" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16850491" sideWeight="0.34154534" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12438726" sideWeight="0.643897" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -406,75 +347,43 @@
         <state line="30" column="5" selection-start="858" selection-end="858" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/global/grid.less">
+    <entry file="file://$PROJECT_DIR$/a.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0" />
+        <state line="32" column="1" selection-start="710" selection-end="710" vertical-scroll-proportion="0.95006746" />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.WebIde10/config/colors/blackboard.xml">
+    <entry file="file://$PROJECT_DIR$/converter/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="13" selection-start="4546" selection-end="4546" vertical-scroll-proportion="0.93186">
+        <state line="65" column="38" selection-start="2195" selection-end="2195" vertical-scroll-proportion="0.093406595" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/style.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="18" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tocss/less-converter.less">
+    <entry file="file://$USER_HOME$/.WebIde10/config/colors/blackboard.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="18" selection-start="1284" selection-end="1284" vertical-scroll-proportion="0.0">
+        <state line="3" column="42" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/global/grid.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="18" selection-start="823" selection-end="823" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="13" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.08627451">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/layout.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="8" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/style.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="29" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="528" column="0" selection-start="12254" selection-end="12254" vertical-scroll-proportion="-374.7097">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/te2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="433" column="9" selection-start="18825" selection-end="18825" vertical-scroll-proportion="0.9591568">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/te.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="337" column="6" selection-start="14255" selection-end="14255" vertical-scroll-proportion="0.95652175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/a.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="1" selection-start="710" selection-end="710" vertical-scroll-proportion="0.95006746">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tocss/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="0" selection-start="0" selection-end="3956" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tocss/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="40" selection-start="2903" selection-end="2903" vertical-scroll-proportion="0.14148352">
+        <state line="44" column="32" selection-start="731" selection-end="731" vertical-scroll-proportion="0.6837294">
           <folding />
         </state>
       </provider>
